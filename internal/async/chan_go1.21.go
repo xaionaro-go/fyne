@@ -61,7 +61,12 @@ func (ch *UnboundedChan[T]) In() chan<- T { return ch.in }
 func (ch *UnboundedChan[T]) Out() <-chan T { return ch.out }
 
 // Close closes the channel.
-func (ch *UnboundedChan[T]) Close() { ch.close <- struct{}{} }
+func (ch *UnboundedChan[T]) Close() {
+	defer func() {
+		recover()
+	}()
+	ch.close <- struct{}{}
+}
 
 func (ch *UnboundedChan[T]) processing() {
 	// This is a preallocation of the internal unbounded buffer.
