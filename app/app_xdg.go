@@ -120,6 +120,7 @@ func rootConfigDir() string {
 }
 
 func watchTheme() {
+	return
 	go func() {
 		// Theme lookup hangs on some desktops. Update theme variant cache from within goroutine.
 		internalapp.CurrentVariant.Store(uint64(findFreedesktopColorScheme()))
