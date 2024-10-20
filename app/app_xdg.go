@@ -114,6 +114,7 @@ func (a *fyneApp) SetSystemTrayIcon(icon fyne.Resource) {
 }
 
 func watchTheme(s *settings) {
+	return
 	go func() {
 		// Theme lookup hangs on some desktops. Update theme variant cache from within goroutine.
 		themeVariant := findFreedesktopColorScheme()
